@@ -1,107 +1,134 @@
-<head>
-	<title>Shane Boulos – Portfolio</title>
-	<meta
-		name="description"
-		content="Portfolio and learning journal for Shane Boulos."
-	/>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
+---
+import Layout from "../layouts/Layout.astro";
+---
 
-<body>
-	<main class="page">
-		<section class="hero">
-			<p class="hero-tagline">PORTFOLIO</p>
-			<h1>Hello, I'm Shane Boulos</h1>
-			<p class="hero-lead">
-				This is the very first draft of my new portfolio.
-			</p>
-		</section>
-	</main>
-</body>
-<style>
-	:root {
-		/* Colors */
-		--page-bg: #050816;
-		--text-main: #f5f5f5;
-		--text-muted: #a1a1aa;
-		--text-subtle: #d4d4d8;
+<Layout>
+	<section class="hero">
+		<p class="hero-kicker">PORTFOLIO</p>
+		<h1 class="hero-title">Hello, I'm Shane Boulos</h1>
+		<p class="hero-body">
+			This is the very first draft of my new portfolio.
+		</p>
+	</section>
 
-		/* Font family */
-		--font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-			sans-serif;
-
-		/* Type scale */
-		--step-2: clamp(2.5rem, 4vw, 3.25rem); /* hero heading */
-		--step-1: 1.25rem; /* future subheads */
-		--step-0: 1rem; /* body */
-		--step--1: 0.875rem; /* small text */
-		/* Spacing scale */
-		--space-xs: 0.5rem;
-		--space-sm: 0.75rem;
-		--space-md: 1rem;
-		--space-lg: 2rem;
-		--space-xl: 3rem;
-	}
-
-	body {
-		margin: 0;
-		font-family: var(--font-sans);
-		background: var(--page-bg);
-		color: var(--text-main);
-	}
-
-	.page {
-		min-height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: var(--space-lg);
-	}
-
-	.hero {
-		max-width: 640px;
-	}
-
-	.hero-tagline {
-		text-transform: uppercase;
-		letter-spacing: 0.12em;
-		font-size: var(--step--1);
-		color: var(--text-muted);
-		margin-bottom: var(--space-sm);
-	}
-
-	.hero h1 {
-		font-size: var(--step-2);
-		line-height: 1.1;
-		margin: 0 0 var(--space-sm_;);
-	}
-
-	.hero-lead {
-		font-size: var(--step-0);
-		line-height: 1.6;
-		color: var(--text-subtle);
-		margin: 0;
-	}
-
-	/* Mobile tweaks */
-	@media (max-width: 768px) {
-		.page {
-			align-items: flex-start;
-			justify-content: flex-start;
-			padding: 2.5rem 1.5rem;
-		}
-
+	<style>
 		.hero {
-			max-width: 480px;
-			margin: 0 auto;
+			width: 100%;
+			max-width: 640px;
+			margin: 3.5rem auto 0;
+			padding: 3rem 2.5rem 3.25rem;
+			border-radius: 1.25rem;
+			border: 1px solid rgba(148, 163, 184, 0.35);
+			background: rgba(15, 23, 42, 0.78);
+			box-shadow: 0 18px 60px rgba(15, 23, 42, 0.9);
+			backdrop-filter: blur(18px);
+
+			opacity: 0;
+			transform: translateY(16px) scale(0.985);
+			filter: blur(4px);
+			animation: hero-in calc(var(--anim-slow) * 1.75)
+				var(--ease-out-soft) forwards;
 		}
 
-		.hero h1 {
-			font-size: clamp(2rem, 8vw, 2.5rem);
+		.hero-kicker {
+			font-size: 0.8rem;
+			letter-spacing: 0.22em;
+			text-transform: uppercase;
+			color: rgba(148, 163, 184, 0.9);
+			margin: 0 0 1.75rem;
+
+			opacity: 0;
+			transform: translateY(6px);
+			animation: hero-kicker-in calc(var(--anim-med) * 1.75)
+				var(--ease-out-soft) forwards;
+			animation-delay: 80ms;
 		}
 
-		.hero-lead {
-			font-size: 0.95rem;
+		.hero-title {
+			font-size: clamp(2.25rem, 3vw + 1rem, 3rem);
+			line-height: 1.1;
+			letter-spacing: -0.03em;
+			margin: 0 0 1rem;
+
+			opacity: 0;
+			transform: translateY(10px);
+			animation: hero-title-in calc(var(--anim-med) * 1.75)
+				var(--ease-out-snappy) forwards;
+			animation-delay: 160ms;
 		}
-	}
-</style>
+
+		.hero-body {
+			margin: 0;
+			max-width: 34rem;
+			font-size: 0.98rem;
+			line-height: 1.7;
+			color: rgba(226, 232, 240, 0.86);
+
+			opacity: 0;
+			transform: translateY(12px);
+			animation: hero-body-in calc(var(--anim-med) * 1.75)
+				var(--ease-out-soft) forwards;
+			animation-delay: 260ms;
+		}
+
+		/* Keyframes */
+
+		@keyframes hero-in {
+			from {
+				opacity: 0;
+				transform: translateY(24px) scale(0.97);
+				filter: blur(6px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+				filter: blur(0);
+			}
+		}
+
+		@keyframes hero-kicker-in {
+			from {
+				opacity: 0;
+				transform: translateY(10px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes hero-title-in {
+			from {
+				opacity: 0;
+				transform: translateY(14px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes hero-body-in {
+			from {
+				opacity: 0;
+				transform: translateY(14px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@media (max-width: 600px) {
+			.hero {
+				margin-top: 2.5rem;
+				padding: 2.25rem 1.75rem 2.75rem;
+				border-radius: 1rem;
+			}
+
+			.hero-title {
+				font-size: 2.1rem;
+			}
+		}
+	</style>
+</Layout>
